@@ -1,26 +1,73 @@
-pod-template
-============
+# PXTutorial
+[![CocoaPods](https://img.shields.io/badge/pod-v16.5.0-blue.svg)]()
 
-An opinionated template for creating a Pod with the following features:
+PXTutorial provides a configurable JSON file and programmatic interface to define the steps of a tutorial. Each step contains image, headline and text, additionally it can contain a link and a close button. The link can be used to open an external web link. The close button can be used to redirect users to the next view.
 
-- Git as the source control management system
-- Clean folder structure
-- Project generation
-- MIT license
-- Testing as a standard
-- Turnkey access to Travis CI
-- Also supports Carthage
+# Integration
 
-## Getting started
+#### CocoaPods (iOS 8+)
+You can use [Cocoapods](http://cocoapods.org/) to install `PXTutorial` by adding it to your `Podfile`:
+```ruby
 
-There are two reasons for wanting to work on this template, making your own or improving the one for everyone's. In both cases you will want to work with the ruby classes inside the `setup` folder, and the example base template that it works on from inside `template/ios/`. 
+platform :ios, '8.0'
+use_frameworks!
 
-## Best practices
+target 'MyApp' do
+	pod ‘PXTutorial'
+end
+```
+Note that this requires CocoaPods version [1.0.0](https://github.com/CocoaPods/CocoaPods/releases/tag/1.0.0) or later, and your iOS deployment target to be at least 8.0
 
-The command `pod lib create` aims to be ran along with this guide: http://guides.cocoapods.org/making/using-pod-lib-create.html so any changes of flow should be updated there also.
+## Building the module locally
+The example project of this module should always compile locally when checking out the `master` or `develop` branch.
 
-It is open to communal input, but adding new features, or new ideas are probably better off being discussed in an issue first. In general we try to think if an average Xcode user is going to use this feature or not, if it's unlikely is it a _very strongly_ encouraged best practice ( ala testing / CI. ) If it's something useful for saving a few minutes every deploy, or isn't easily documented in the guide it is likely to be denied in order to keep this project as simple as possible.
+# Usage
 
-## Requirements:
+#### DataSource
+Define a datasource for tutorial steps by JSON config file or programmatically by implementing `PXTutorialDataSource`
 
-- CocoaPods 1.0.0+
+- Use the default implementation `PXTutorialJSONDataSource` of `PXTutorialDataSource` to parse a JSON config file
+- 
+```objc
+PXTutorialJSONDataSource *dataSource = [PXTutorialJSONDataSource sharedInstance];  
+[dataSource parseTutorial:@“sample-tutorial"];
+```
+
+- Or implement your own data source to get an array of `PXTutorialStep`
+
+#### PXTutorialBoardViewController
+Instantiate `PXTutorialBoardViewController` from the storyboard `PXTutorialBoard`
+
+```objc
+NSBundle *bundle = [NSBundle bundleForClass:[self PXTutorialBoardViewController]];  
+UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@“PXTutorialBoard" bundle:bundle];  
+PXTutorialBoardViewController *tutorialVC = [storyboard instantiateViewControllerWithIdentifier:@“PXTutorialBoardViewController"];  
+```
+
+#### PXTutorialCloseDelegate
+Implement the delegate method of `PXTutorialCloseDelegate`. The logic to memorize if a tutorial has been read can be implemented here.
+
+```objc
+@interface PXViewController : UIViewController <PXTutorialCloseDelegate>  
+@end  
+
+@implementation PXViewController  
+// MARK: - PXTutorialCloseDelegate
+- (void)close {  
+  [self.navigationController popViewControllerAnimated:NO];  
+} 
+```
+
+#### Set DataSource and Delegate
+Within `PXTutorialBoardViewController` do
+
+```objC
+tutorialVC.tutorialCloseDelegate = <your implementation>; 
+tutorialVC.tutorialDataSource = config or <your implementation>;
+```
+
+#### Presentation
+```objc
+[self.navigationController pushViewController:tutorialVC animated:YES];
+```
+
