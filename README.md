@@ -1,5 +1,5 @@
 # PXTutorial
-[![CocoaPods](https://img.shields.io/badge/pod-v16.5.0-blue.svg)]()
+[![CocoaPods](https://img.shields.io/badge/pod-v1.2.0-blue.svg)]()
 
 PXTutorial provides a configurable JSON file and programmatic interface to define the steps of a tutorial. Each step contains image, headline and text, additionally it can contain a link and a close button. The link can be used to open an external web link. The close button can be used to redirect users to the next view.
 
