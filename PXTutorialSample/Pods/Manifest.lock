@@ -1,0 +1,21 @@
+PODS:
+  - PXTutorial (0.1.0)
+
+DEPENDENCIES:
+  - PXTutorial (from `https://github.com/MalekEBelkahla/PXTutorial.git`)
+
+EXTERNAL SOURCES:
+  PXTutorial:
+    :git: https://github.com/MalekEBelkahla/PXTutorial.git
+
+CHECKOUT OPTIONS:
+  PXTutorial:
+    :commit: 9e48aa4f0eb553ab316ca715063de8265c7fddaf
+    :git: https://github.com/MalekEBelkahla/PXTutorial.git
+
+SPEC CHECKSUMS:
+  PXTutorial: 17e77de0466da1a6357dbab2c29861957db5e6aa
+
+PODFILE CHECKSUM: aeecf6bf0fefee2cbd4b4b7ccb36d0f5dffb8c74
+
+COCOAPODS: 1.2.0.beta.1

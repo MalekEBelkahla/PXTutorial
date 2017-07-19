@@ -1,0 +1,27 @@
+{
+  "name": "PXTutorial",
+  "version": "0.1.0",
+  "summary": "PXTutorial provides a configurable JSON file and programmatic interface to define the steps of a tutorial.",
+  "description": "PXTutorial provides a configurable JSON file and programmatic interface to define the steps of a tutorial. Each step contains image, headline and text, additionally it can contain a link and a close button. The link can be used to open an external web link. The close button can be used to redirect users to the next view.",
+  "homepage": "https://github.com/MalekEBelkahla/PXTutorial",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Malek Belkahla": "malek.belkahla@proxym-it.com"
+  },
+  "source": {
+    "git": "https://github.com/MalekEBelkahla/PXTutorial.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "Classes/**/*",
+  "resource_bundles": {
+    "PXTutorial": [
+      "Assets/*.{png,storyboard}"
+    ]
+  }
+}
