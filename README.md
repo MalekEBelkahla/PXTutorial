@@ -27,7 +27,7 @@ The example project of this module should always compile locally when checking o
 Define a datasource for tutorial steps by JSON config file or programmatically by implementing `PXTutorialDataSource`
 
 - Use the default implementation `PXTutorialJSONDataSource` of `PXTutorialDataSource` to parse a JSON config file
-- 
+
 ```objc
 PXTutorialJSONDataSource *dataSource = [PXTutorialJSONDataSource sharedInstance];  
 [dataSource parseTutorial:@“sample-tutorial"];
